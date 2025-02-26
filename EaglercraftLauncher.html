@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eaglercraft Launcher</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: white;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .launcher {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+      .header {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 2px solid #444;
+        width: 100%;
+      }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        width: 100%;
+      }
+      .footer {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        border-top: 2px solid #444;
+        width: 100%;
+      }
+      .button {
+        margin: 10px;
+        padding: 15px 25px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+      }
+      .button:hover {
+        background-color: #45a049;
+      }
+      .iframe-container {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        z-index: 1000;
+      }
+      .iframe-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .iframe-controls {
+        display: none;
+      }
+      .client-select {
+        margin: 10px;
+        padding: 15px 25px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="launcher">
+      <div class="header">
+        <h1>Eaglercraft Launcher</h1>
+      </div>
+      <div class="content">
+        <select class="client-select" id="clientSelect">
+          <option value="https://cobblesteve01.github.io/Eaglercraft-Extras/clients/1.8/eaglercraftx.html">1.8</option>
+          <option value="https://cobblesteve01.github.io/Eaglercraft-Extras/clients/1.5/eagler1.5.html">1.5</option>
+          <option value="https://cobblesteve01.github.io/Eaglercraft-Extras/clients/1.9/eag1_9_4.html">1.9</option>
+          <option value="https://cobblesteve01.github.io/Eaglercraft-Extras/clients/1.11/eag1_11_2.html">1.11</option>
+        </select>
+        <button class="button" onclick="launchEaglercraft()">Play</button>
+        <div class="iframe-container" id="iframeContainer">
+          <iframe id="eaglercraftIframe" src=""></iframe>
+        </div>
+      </div>
+      <div class="footer">
+        <p>&copy; 2025 Eaglercraft Launcher</p>
+      </div>
+    </div>
+    <script>
+      function launchEaglercraft() {
+        var iframeContainer = document.getElementById('iframeContainer');
+        var iframe = document.getElementById('eaglercraftIframe');
+        var clientSelect = document.getElementById('clientSelect');
+        iframe.src = clientSelect.value;
+        iframeContainer.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        requestPointerLock();
+      }
+
+      function closeIframe() {
+        var iframeContainer = document.getElementById('iframeContainer');
+        var iframe = document.getElementById('eaglercraftIframe');
+        iframe.src = '';
+        iframeContainer.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        document.exitPointerLock();
+      }
+
+      function minimizeIframe() {
+        var iframeContainer = document.getElementById('iframeContainer');
+        iframeContainer.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        document.exitPointerLock();
+      }
+
+      function requestPointerLock() {
+        var iframe = document.getElementById('eaglercraftIframe');
+        iframe.requestPointerLock = iframe.requestPointerLock || iframe.mozRequestPointerLock || iframe.webkitRequestPointerLock;
+        iframe.requestPointerLock();
+      }
+    </script>
+  </body>
+</html>
