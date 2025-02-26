@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mods Marketplace</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: white;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .marketplace {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+      .header {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 2px solid #444;
+        width: 100%;
+      }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        width: 100%;
+      }
+      .footer {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        border-top: 2px solid #444;
+        width: 100%;
+      }
+      .button {
+        margin: 10px;
+        padding: 15px 25px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+      }
+      .button:hover {
+        background-color: #45a049;
+      }
+      .iframe-container {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        z-index: 1000;
+      }
+      .iframe-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .iframe-controls {
+        display: none;
+      }
+      .client-select {
+        margin: 10px;
+        padding: 15px 25px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="marketplace">
+      <div class="header">
+        <h1>Mods Marketplace</h1>
+      </div>
+      <div class="content">
+        <p>Welcome to the Mods Marketplace! Browse and install mods for Eaglercraft.</p>
+        <button class="button" onclick="browseMods()">Browse Mods</button>
+        <div class="iframe-container" id="iframeContainer">
+          <iframe id="modsIframe" src=""></iframe>
+        </div>
+      </div>
+      <div class="footer">
+        <p>&copy; 2025 Mods Marketplace</p>
+      </div>
+    </div>
+    <script>
+      function browseMods() {
+        var iframeContainer = document.getElementById('iframeContainer');
+        var iframe = document.getElementById('modsIframe');
+        iframe.src = 'https://example.com/mods-marketplace'; // Replace with the actual mods marketplace URL
+        iframeContainer.style.display = 'block';
+      }
+
+      function closeIframe() {
+        var iframeContainer = document.getElementById('iframeContainer');
+        var iframe = document.getElementById('modsIframe');
+        iframe.src = '';
+        iframeContainer.style.display = 'none';
+      }
+
+      function minimizeIframe() {
+        var iframeContainer = document.getElementById('iframeContainer');
+        iframeContainer.style.display = 'none';
+      }
+    </script>
+  </body>
+</html>
